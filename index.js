@@ -5,7 +5,7 @@ app.get('/', function (req, res) {
     res.send('{ "response": "Hello From chroot300" }');
 });
 
-app.get('/will', function (req, res) {
+app.get('/hello', function (req, res) {
     res.send('{ "response": "Hello World" }');
 });
 app.get('/ready', function (req, res) {
