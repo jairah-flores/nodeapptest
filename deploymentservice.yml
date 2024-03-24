@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: nodeserver
-        image: chroot300/nodeapp:latest
+        image: chroot200/nodeapp:latest
         ports:
         - containerPort: 3000
         
