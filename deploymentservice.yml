@@ -7,6 +7,11 @@ metadata:
     app: nodeapp
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: nodeapp
@@ -18,9 +23,16 @@ spec:
       containers:
       - name: nodeserver
         image: chroot200/nodeapp:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
-        
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "500m"
+          limits:
+            memory: "500Mi"
+            cpu: "2000m"
         
 ---
 apiVersion: v1
@@ -30,7 +42,7 @@ metadata:
 spec:
   selector:
     app: nodeapp 
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - protocol: TCP
     port: 5000
